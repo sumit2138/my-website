@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit | website</title>
-    <meta name="description" content="Sumit - Creative Developer & UI/UX Designer">
-    <meta property="og:title" content="Sumit | Portfolio">
-    <meta property="og:description" content="Creative Developer & UI/UX Designer">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <title>Sumit | Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
+        /* Base Styles */
         :root {
             --primary: #6c63ff;
             --secondary: #ff6584;
@@ -67,96 +65,33 @@
 
         /* Preloader */
         #preloader {
-            
-.card {
-  
-  --bg-color: #111;
-  background-color: var(--bg-color);
-  padding: 1rem 2rem;
-  border-radius: 1.25rem;
-}
-.loader {
-  color: rgb(124, 124, 124);
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 25px;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 40px;
-  padding: 10px 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-radius: 8px;
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
 
-.words {
-  overflow: hidden;
-  position: relative;
-}
-.words::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    var(--bg-color) 10%,
-    transparent 30%,
-    transparent 70%,
-    var(--bg-color) 90%
-  );
-  z-index: 20;
-}
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
 
-.word {
-  display: block;
-  height: 100%;
-  padding-left: 6px;
-  color: #956afa;
-  animation: spin_4991 4s infinite;
-}
-
-@keyframes spin_4991 {
-  10% {
-    -webkit-transform: translateY(-102%);
-    transform: translateY(-102%);
-  }
-
-  25% {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-
-  35% {
-    -webkit-transform: translateY(-202%);
-    transform: translateY(-202%);
-  }
-
-  50% {
-    -webkit-transform: translateY(-200%);
-    transform: translateY(-200%);
-  }
-
-  60% {
-    -webkit-transform: translateY(-302%);
-    transform: translateY(-302%);
-  }
-
-  75% {
-    -webkit-transform: translateY(-300%);
-    transform: translateY(-300%);
-  }
-
-  85% {
-    -webkit-transform: translateY(-402%);
-    transform: translateY(-402%);
-  }
-
-  100% {
-    -webkit-transform: translateY(-400%);
-    transform: translateY(-400%);
-  }
-}
-
+        .loader-text {
+            font-size: 1.2rem;
+            color: var(--light);
         }
 
         @keyframes spin {
@@ -170,7 +105,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
             background: linear-gradient(-45deg, var(--dark), #16213e, #0f3460, #1a1a2e);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
@@ -345,6 +280,61 @@
             cursor: pointer;
         }
 
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            margin-left: 1rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--gray);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .language-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--dark);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .language-options.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .language-option:hover {
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -414,6 +404,51 @@
 
         .btn-secondary:hover {
             background: var(--primary);
+        }
+
+        /* 3D Cube Animation */
+        .cube-container {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            perspective: 1000px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 15s infinite linear;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(108, 99, 255, 0.1);
+            border: 2px solid rgba(108, 99, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            backdrop-filter: blur(5px);
+        }
+
+        .cube-face.front { transform: translateZ(100px); }
+        .cube-face.back { transform: translateZ(-100px) rotateY(180deg); }
+        .cube-face.right { transform: translateX(100px) rotateY(90deg); }
+        .cube-face.left { transform: translateX(-100px) rotateY(-90deg); }
+        .cube-face.top { transform: translateY(-100px) rotateX(90deg); }
+        .cube-face.bottom { transform: translateY(100px) rotateX(-90deg); }
+
+        @keyframes rotate {
+            0% { transform: rotateX(0) rotateY(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
         }
 
         /* Sections */
@@ -496,6 +531,33 @@
             border-radius: 4px;
             width: 0;
             transition: width 1.5s ease;
+        }
+
+        /* Resume Download Card */
+        .resume-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--card-shadow);
+            max-width: 500px;
+            margin: 2rem auto;
+            transition: var(--transition);
+        }
+
+        .resume-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resume-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .resume-card p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
         }
 
         /* Projects Section */
@@ -750,20 +812,20 @@
             left: -10px;
         }
 
-        /* Testimonials */
-        .testimonials-container {
+        /* Languages Section */
+        .languages-container {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
         }
 
-        .testimonials-slider {
+        .languages-slider {
             display: flex;
             transition: transform 0.5s ease;
         }
 
-        .testimonial {
+        .language-card {
             min-width: 100%;
             padding: 2rem;
             background: var(--card-bg);
@@ -772,42 +834,48 @@
             box-shadow: var(--card-shadow);
         }
 
-        .testimonial-text {
+        .language-text {
             font-style: italic;
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
-        .testimonial-author {
+        .language-info {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .author-avatar {
+        .language-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
         }
 
-        .author-info h4 {
+        .language-details h4 {
             margin-bottom: 0.2rem;
         }
 
-        .author-info p {
+        .language-details p {
             color: var(--gray);
             font-size: 0.9rem;
         }
 
-        .testimonial-nav {
+        .language-nav {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
         }
 
-        .testimonial-dot {
+        .language-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -816,7 +884,7 @@
             transition: var(--transition);
         }
 
-        .testimonial-dot.active {
+        .language-dot.active {
             background: var(--primary);
             transform: scale(1.2);
         }
@@ -944,145 +1012,6 @@
             transform: translateY(-5px);
         }
 
-        /* 3D Cube Animation */
-        .cube-container {
-            width: 200px;
-            height: 200px;
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            perspective: 1000px;
-        }
-
-        .cube {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate 15s infinite linear;
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(108, 99, 255, 0.1);
-            border: 2px solid rgba(108, 99, 255, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            backdrop-filter: blur(5px);
-        }
-
-        .cube-face.front { transform: translateZ(100px); }
-        .cube-face.back { transform: translateZ(-100px) rotateY(180deg); }
-        .cube-face.right { transform: translateX(100px) rotateY(90deg); }
-        .cube-face.left { transform: translateX(-100px) rotateY(-90deg); }
-        .cube-face.top { transform: translateY(-100px) rotateX(90deg); }
-        .cube-face.bottom { transform: translateY(100px) rotateX(-90deg); }
-
-        @keyframes rotate {
-            0% { transform: rotateX(0) rotateY(0); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
-        }
-
-        /* Language Switcher */
-        .language-switcher {
-            position: relative;
-            margin-left: 1rem;
-        }
-
-        .language-btn {
-            background: transparent;
-            border: 1px solid var(--gray);
-            color: var(--light);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .language-btn:hover {
-            border-color: var(--primary);
-        }
-
-        .language-options {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--dark);
-            border-radius: 10px;
-            padding: 0.5rem 0;
-            min-width: 120px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-        }
-
-        .language-options.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .language-option:hover {
-            background: rgba(108, 99, 255, 0.1);
-            color: var(--primary);
-        }
-
-        /* Resume Download Card */
-        .resume-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--card-shadow);
-            max-width: 500px;
-            margin: 2rem auto;
-            transition: var(--transition);
-        }
-
-        .resume-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .resume-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .resume-card p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* AI Chat Widget */
         .chat-widget {
             position: fixed;
@@ -1200,6 +1129,18 @@
             align-items: center;
         }
 
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content, .contact-container {
@@ -1269,6 +1210,10 @@
                 left: 10px;
                 bottom: 80px;
             }
+
+            .theme-switcher, .language-switcher {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1276,7 +1221,7 @@
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader"></div>
-        <div class="loader-text">Loading Sumit's Portfolio...</div>
+        <div class="loader-text">Loading...</div>
     </div>
 
     <!-- Animated Background -->
@@ -1300,8 +1245,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#timeline">Journey</a></li>
+                <li><a href="#languages">Technologies</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -1327,8 +1272,8 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="typewriter">Hi, I'm Sumit</h1>
-            <h1>Creative Developer & UI/UX Designer</h1>
-            <p>I create beautiful, functional, and user-centered digital experiences. With a passion for both design and development, I bring ideas to life in the browser.</p>
+            <h1>Full Stack Developer</h1>
+            <p>I create beautiful, functional, and user-centered digital experiences. Self-taught developer passionate about both frontend and backend technologies.</p>
             <div>
                 <a href="#projects" class="btn">View My Work</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -1336,12 +1281,12 @@
         </div>
         <div class="cube-container">
             <div class="cube">
-                <div class="cube-face front">S</div>
-                <div class="cube-face back">U</div>
-                <div class="cube-face right">M</div>
-                <div class="cube-face left">I</div>
-                <div class="cube-face top">T</div>
-                <div class="cube-face bottom">💻</div>
+                <div class="cube-face front">Sumit </div>
+                <div class="cube-face back">Sumit</div>
+                <div class="cube-face right">Sumit</div>
+                <div class="cube-face left">Bishnoi</div>
+                <div class="cube-face top">Bishnoi</div>
+                <div class="cube-face bottom">Bishnoi</div>
             </div>
         </div>
     </section>
@@ -1351,9 +1296,9 @@
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm Sumit, a passionate front-end developer and UI/UX designer with over 5 years of experience creating digital products that users love. My journey started with a degree in Computer Science and a fascination for how design and technology intersect.</p>
-                <p>I specialize in creating responsive websites and web applications using modern technologies like React, Vue.js, and modern CSS. I believe in writing clean, efficient code and creating intuitive user experiences.</p>
-                <p>When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or hiking in the mountains.</p>
+                <p>I'm Sumit, a self-taught full stack developer who started my coding journey in 2018. What began as curiosity through YouTube tutorials has evolved into a passion for creating complete web applications.</p>
+                <p>I specialize in creating responsive websites and web applications using modern technologies. I believe in writing clean, efficient code and creating intuitive user experiences.</p>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or learning new programming concepts.</p>
             </div>
             <div class="skills-container">
                 <div class="skill fade-in">
@@ -1375,9 +1320,21 @@
                     </div>
                 </div>
                 <div class="skill fade-in">
-                    <h3>UI/UX Design</h3>
+                    <h3>Node.js</h3>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill fade-in">
+                    <h3>Python</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75"></div>
+                    </div>
+                </div>
+                <div class="skill fade-in">
+                    <h3>MongoDB</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70"></div>
                     </div>
                 </div>
             </div>
@@ -1403,27 +1360,144 @@
             <button class="filter-btn" data-filter="tools">Tools</button>
         </div>
         <div class="projects-grid">
-            <!-- Project cards will be generated by JavaScript -->
+            <div class="project-card fade-in">
+                <img src="https://via.placeholder.com/400x250/6c63ff/ffffff?text=E-Commerce+Platform" alt="E-Commerce Platform" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">A full-featured online store with product filtering, cart functionality, and secure checkout.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link view-details"><i class="fas fa-external-link-alt"></i> View Details</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://via.placeholder.com/400x250/ff6584/ffffff?text=Task+Manager" alt="Task Management App" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Task Management App</h3>
+                    <p class="project-description">A productivity tool for managing tasks with drag-and-drop functionality and team collaboration.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Vue.js</span>
+                        <span class="project-tag">Firebase</span>
+                        <span class="project-tag">CSS3</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link view-details"><i class="fas fa-external-link-alt"></i> View Details</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://via.placeholder.com/400x250/9b59b6/ffffff?text=Weather+App" alt="Weather Dashboard" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Weather Dashboard</h3>
+                    <p class="project-description">A responsive weather application with location-based forecasts and interactive charts.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">API</span>
+                        <span class="project-tag">Chart.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link view-details"><i class="fas fa-external-link-alt"></i> View Details</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
     <section id="timeline" class="timeline-section">
-        <h2 class="section-title">My Journey</h2>
+        <h2 class="section-title">My Coding Journey</h2>
         <div class="timeline">
-            <!-- Timeline items will be generated by JavaScript -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2018</div>
+                    <h3>Started Learning Programming</h3>
+                    <h4>Self-Taught Journey</h4>
+                    <p>Began learning programming basics through YouTube tutorials and online resources. Started with Python and basic web development concepts.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019</div>
+                    <h3>First Website with Python</h3>
+                    <h4>Personal Project</h4>
+                    <p>Created my first website using Python. Learned about web frameworks and basic backend development principles.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2020</div>
+                    <h3>Frontend Development Focus</h3>
+                    <h4>Self-Study</h4>
+                    <p>Started learning frontend technologies including HTML, CSS, JavaScript, and modern frameworks. Built several responsive websites and UI components.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021</div>
+                    <h3>Backend Development</h3>
+                    <h4>Advanced Learning</h4>
+                    <p>Expanded knowledge to backend technologies including Node.js, databases, and server-side programming. Learned about APIs and full-stack development.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - Present</div>
+                    <h3>Full Stack Developer</h3>
+                    <h4>Current Skills</h4>
+                    <p>Now capable of building complete full-stack applications. Working with modern technologies including React, Node.js, MongoDB, and deploying applications to cloud platforms.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <h2 class="section-title">Testimonials</h2>
-        <div class="testimonials-container">
-            <div class="testimonials-slider">
-                <!-- Testimonials will be generated by JavaScript -->
+    <!-- Languages Section -->
+    <section id="languages" class="languages">
+        <h2 class="section-title">Technologies I Work With</h2>
+        <div class="languages-container">
+            <div class="languages-slider">
+                <div class="language-card">
+                    <p class="language-text">"JavaScript powers modern web applications with its versatility across frontend and backend. Its event-driven nature and vast ecosystem make it ideal for building interactive user interfaces and scalable server applications."</p>
+                    <div class="language-info">
+                        <div class="language-icon">JS</div>
+                        <div class="language-details">
+                            <h4>JavaScript</h4>
+                            <p>Full Stack Language</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <p class="language-text">"Python's clean syntax and extensive libraries make development faster and more efficient. From web development to data science, Python's versatility and readability help developers build robust applications with less code."</p>
+                    <div class="language-info">
+                        <div class="language-icon">PY</div>
+                        <div class="language-details">
+                            <h4>Python</h4>
+                            <p>Versatile Programming</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <p class="language-text">"React's component-based architecture enables building reusable UI components. Virtual DOM ensures high performance, while its declarative approach makes code more predictable and easier to debug in complex applications."</p>
+                    <div class="language-info">
+                        <div class="language-icon">RX</div>
+                        <div class="language-details">
+                            <h4>React</h4>
+                            <p>UI Library</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="testimonial-nav">
-                <!-- Dots will be generated by JavaScript -->
+            <div class="language-nav">
+                <div class="language-dot active" data-index="0"></div>
+                <div class="language-dot" data-index="1"></div>
+                <div class="language-dot" data-index="2"></div>
             </div>
         </div>
     </section>
@@ -1434,24 +1508,24 @@
         <div class="contact-container">
             <div class="contact-info">
                 <div class="contact-item">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <div>
                         <h3>Email</h3>
-                        <p>sumit989bishnoi@gmail</p>
+                        <p>sumit989bishnoi@gmail.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <h3>Phone</h3>
                         <p>+91 9053701829</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">📍</div>
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div>
                         <h3>Location</h3>
-                        <p>tohana tharwa</p>
+                        <p>India,haryana,tohana,tharwa</p>
                     </div>
                 </div>
             </div>
@@ -1476,20 +1550,23 @@
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="#" class="social-link">📘</a>
-            <a href="#" class="social-link">🐦</a>
-            <a href="#" class="social-link">📷</a>
-            <a href="#" class="social-link">💼</a>
-            <a href="#" class="social-link">🐙</a>
+            <a href="https://github.com/sumit2138" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/sumitbishnoi9833" class="social-link"><i class="fab fa-instagram"></i></a>
         </div>
         <p class="copyright">© 2023 Sumit. All rights reserved.</p>
     </footer>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">↑</div>
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- AI Chat Widget -->
-    <div class="chat-widget" id="chatWidget">💬</div>
+    <div class="chat-widget" id="chatWidget">
+        <i class="fas fa-comments"></i>
+    </div>
     <div class="chat-container" id="chatContainer">
         <div class="chat-header">
             <h3>Sumit's Assistant</h3>
@@ -1502,7 +1579,7 @@
         </div>
         <div class="chat-input">
             <input type="text" id="chatInput" placeholder="Ask me something...">
-            <button id="chatSend">➤</button>
+            <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
@@ -1519,7 +1596,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         // Preloader
         window.addEventListener('load', function() {
@@ -1686,150 +1762,10 @@
             alert('Resume download would start. In a real implementation, this would download a PDF file.');
         });
 
-        // Project Data
-        const projects = [
-            {
-                id: 1,
-                title: "E-Commerce Platform",
-                description: "A full-featured online store with product filtering, cart functionality, and secure checkout.",
-                image: "https://via.placeholder.com/400x250/6c63ff/ffffff?text=E-Commerce+Platform",
-                category: "web",
-                tags: ["React", "Node.js", "MongoDB", "Stripe"],
-                details: "This project involved building a complete e-commerce solution from scratch. Features include user authentication, product catalog with search and filtering, shopping cart, and payment integration with Stripe.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Home+Page",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Product+Page",
-                    "https://via.placeholder.com/600x400/2ecc71/ffffff?text=Checkout"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 2,
-                title: "Task Management App",
-                description: "A productivity tool for managing tasks with drag-and-drop functionality and team collaboration.",
-                image: "https://via.placeholder.com/400x250/ff6584/ffffff?text=Task+Manager",
-                category: "tools",
-                tags: ["Vue.js", "Firebase", "CSS3"],
-                details: "A Kanban-style task management application with real-time updates, drag-and-drop functionality, and team collaboration features. Users can create boards, lists, and cards to organize their workflow.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Dashboard",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Task+Board"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 3,
-                title: "Travel Blog UI",
-                description: "A visually stunning interface for a travel blog with immersive photography and smooth animations.",
-                image: "https://via.placeholder.com/400x250/2ecc71/ffffff?text=Travel+Blog",
-                category: "ui",
-                tags: ["Figma", "Adobe XD", "Prototyping"],
-                details: "UI/UX design for a travel blog focusing on visual storytelling. The design includes custom illustrations, smooth page transitions, and an immersive reading experience optimized for both desktop and mobile.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Home+Design",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Article+Page"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 4,
-                title: "Weather Dashboard",
-                description: "A responsive weather application with location-based forecasts and interactive charts.",
-                image: "https://via.placeholder.com/400x250/9b59b6/ffffff?text=Weather+App",
-                category: "web",
-                tags: ["JavaScript", "API", "Chart.js"],
-                details: "A weather dashboard that displays current conditions and forecasts for any location. Features include interactive charts, location search, and the ability to save favorite locations.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Dashboard",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Forecast"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 5,
-                title: "Fitness App Design",
-                description: "UI/UX design for a mobile fitness application with workout tracking and social features.",
-                image: "https://via.placeholder.com/400x250/e74c3c/ffffff?text=Fitness+App",
-                category: "ui",
-                tags: ["Sketch", "Prototyping", "User Research"],
-                details: "Complete UI/UX design for a fitness tracking mobile application. The design includes workout logging, progress tracking, social features, and personalized recommendations based on user goals.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Onboarding",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Workout+Screen"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 6,
-                title: "Code Snippet Manager",
-                description: "A tool for developers to save, organize, and share code snippets with syntax highlighting.",
-                image: "https://via.placeholder.com/400x250/3498db/ffffff?text=Code+Manager",
-                category: "tools",
-                tags: ["React", "Firebase", "Prism.js"],
-                details: "A web application for developers to save and organize code snippets. Features include syntax highlighting, search functionality, tagging, and the ability to share snippets with others.",
-                images: [
-                    "https://via.placeholder.com/600x400/6c63ff/ffffff?text=Snippet+List",
-                    "https://via.placeholder.com/600x400/ff6584/ffffff?text=Editor"
-                ],
-                liveLink: "#",
-                codeLink: "#"
-            }
-        ];
-
-        // Generate Project Cards
-        const projectsGrid = document.querySelector('.projects-grid');
+        // Project Filtering
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
 
-        function renderProjects(filter = 'all') {
-            projectsGrid.innerHTML = '';
-            
-            const filteredProjects = filter === 'all' 
-                ? projects 
-                : projects.filter(project => project.category === filter);
-            
-            filteredProjects.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card fade-in';
-                projectCard.setAttribute('data-category', project.category);
-                
-                projectCard.innerHTML = `
-                    <img src="${project.image}" alt="${project.title}" class="project-img">
-                    <div class="project-content">
-                        <h3 class="project-title">${project.title}</h3>
-                        <p class="project-description">${project.description}</p>
-                        <div class="project-tags">
-                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link view-details" data-id="${project.id}">View Details</a>
-                            <a href="${project.liveLink}" class="project-link">Live Demo</a>
-                            <a href="${project.codeLink}" class="project-link">Source Code</a>
-                        </div>
-                    </div>
-                `;
-                
-                projectsGrid.appendChild(projectCard);
-            });
-            
-            // Re-initialize fade-in animations for new elements
-            initScrollAnimations();
-            
-            // Add event listeners to view details buttons
-            document.querySelectorAll('.view-details').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const projectId = parseInt(button.getAttribute('data-id'));
-                    openProjectModal(projectId);
-                });
-            });
-        }
-
-        // Filter Projects
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const filter = button.getAttribute('data-filter');
@@ -1837,37 +1773,40 @@
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
-                renderProjects(filter);
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
 
         // Project Modal
         const projectModal = document.getElementById('projectModal');
         const modalClose = document.getElementById('modalClose');
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
 
-        function openProjectModal(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (!project) return;
-            
-            document.getElementById('modalTitle').textContent = project.title;
-            
-            const modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
-                <div class="modal-images">
-                    ${project.images.map(img => `<img src="${img}" alt="${project.title}" class="modal-img">`).join('')}
-                </div>
-                <p>${project.details}</p>
-                <div class="project-tags" style="margin-top: 1rem;">
-                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-                </div>
-                <div style="margin-top: 1.5rem;">
-                    <a href="${project.liveLink}" class="btn" style="margin-right: 1rem;">View Live Demo</a>
-                    <a href="${project.codeLink}" class="btn btn-secondary">View Source Code</a>
-                </div>
-            `;
-            
-            projectModal.classList.add('active');
-        }
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectCard = button.closest('.project-card');
+                const title = projectCard.querySelector('.project-title').textContent;
+                const description = projectCard.querySelector('.project-description').textContent;
+                
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalBody').innerHTML = `
+                    <p>${description}</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="btn" style="margin-right: 1rem;">View Live Demo</a>
+                        <a href="#" class="btn btn-secondary">View Source Code</a>
+                    </div>
+                `;
+                
+                projectModal.classList.add('active');
+            });
+        });
 
         modalClose.addEventListener('click', () => {
             projectModal.classList.remove('active');
@@ -1879,82 +1818,31 @@
             }
         });
 
-        // Timeline Data
-        const timelineData = [
-            {
-                date: "2025 - Present",
-                title: "Senior Frontend Developer",
-                company: "Tech Innovations Inc.",
-                description: "Leading frontend development for various client projects, mentoring junior developers, and implementing modern web technologies."
-            },
-            {
-                date: "2021 - 2024",
-                title: "UI/UX Designer & Developer",
-                company: "Creative Solutions Agency",
-                description: "Designed and developed user interfaces for web and mobile applications, working closely with clients to understand their needs."
-            },
-            {
-                date: "2019 - 2020",
-                title: "Web Developer",
-                company: "Digital Media Studio",
-                description: "Built responsive websites and web applications using HTML, CSS, JavaScript, and various CMS platforms."
-            },
-            {
-                date: "2017 - 2018",
-                title: "start learing ",
-                sorce: "youtube",
-                description: "started learing form yotube and other onile platforms"
-            }
-        ];
+        // Language Slider
+        const languagesSlider = document.querySelector('.languages-slider');
+        const languageDots = document.querySelectorAll('.language-dot');
+        let currentSlide = 0;
 
-        // Generate Timeline
-        const timeline = document.querySelector('.timeline');
-
-        timelineData.forEach((item, index) => {
-            const timelineItem = document.createElement('div');
-            timelineItem.className = 'timeline-item fade-in';
-            
-            timelineItem.innerHTML = `
-                <div class="timeline-content">
-                    <div class="timeline-date">${item.date}</div>
-                    <h3>${item.title}</h3>
-                    <h4>${item.company}</h4>
-                    <p>${item.description}</p>
-                </div>
-            `;
-            
-            timeline.appendChild(timelineItem);
-        });
-
-     
-            
-            // Create navigation dot
-            const dot = document.createElement('div');
-            dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
-            dot.setAttribute('data-index', index);
-            
+        languageDots.forEach(dot => {
             dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
                 goToSlide(index);
             });
-            
-            testimonialNav.appendChild(dot);
         });
-
-        let currentSlide = 0;
 
         function goToSlide(index) {
             currentSlide = index;
-            testimonialsSlider.style.transform = `translateX(-${index * 100}%)`;
+            languagesSlider.style.transform = `translateX(-${index * 100}%)`;
             
             // Update active dot
-            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+            languageDots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
         }
 
-        // Auto-advance testimonials
+        // Auto-advance languages
         setInterval(() => {
-            currentSlide = (currentSlide + 1) % testimonialsData.length;
+            currentSlide = (currentSlide + 1) % languageDots.length;
             goToSlide(currentSlide);
         }, 5000);
 
@@ -1965,41 +1853,6 @@
             alert('Thank you for your message! I will get back to you soon.');
             contactForm.reset();
         });
-
-        // Scroll Animations
-        function initScrollAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        // Animate skill bars
-                        if (entry.target.classList.contains('skill')) {
-                            const progressBar = entry.target.querySelector('.skill-progress');
-                            const width = progressBar.getAttribute('data-width');
-                            setTimeout(() => {
-                                progressBar.style.width = width + '%';
-                            }, 300);
-                        }
-                        
-                        // Animate timeline items
-                        if (entry.target.classList.contains('timeline-item')) {
-                            setTimeout(() => {
-                                entry.target.classList.add('visible');
-                            }, 200);
-                        }
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-        }
 
         // AI Chat Widget
         const chatWidget = document.getElementById('chatWidget');
@@ -2015,7 +1868,7 @@
             "services": "Sumit offers web development, UI/UX design, and consulting services. He specializes in creating modern, responsive websites and applications.",
             "skills": "Sumit's technical skills include HTML/CSS, JavaScript, React, Vue.js, UI/UX design, and more. Check out the skills section for details!",
             "experience": "Sumit has over 5 years of experience in web development and design. You can view his work history in the timeline section.",
-            "contact": "You can reach Sumit via the contact form on this website, or through email at hello@sumit.dev",
+            "contact": "You can reach Sumit via the contact form on this website, or through email at sumit989bishnoi@gmail.com",
             "projects": "Sumit has worked on various projects including e-commerce platforms, task management apps, and UI designs. Check out the projects section!",
             "rate": "Pricing depends on the project scope and requirements. Please use the contact form to discuss your specific needs.",
             "availability": "Sumit is currently available for new projects. Feel free to reach out through the contact form to discuss your project.",
@@ -2069,9 +1922,43 @@
             }
         });
 
+        // Scroll Animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate skill bars
+                        if (entry.target.classList.contains('skill')) {
+                            const progressBar = entry.target.querySelector('.skill-progress');
+                            const width = progressBar.getAttribute('data-width');
+                            setTimeout(() => {
+                                progressBar.style.width = width + '%';
+                            }, 300);
+                        }
+                        
+                        // Animate timeline items
+                        if (entry.target.classList.contains('timeline-item')) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, 200);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
             initScrollAnimations();
             
             // Check for dark mode preference
@@ -2081,5 +1968,4 @@
         });
     </script>
 </body>
-
 </html>
